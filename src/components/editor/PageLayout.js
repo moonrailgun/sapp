@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class PageLayout extends Component {
   renderPage(xml) {
-
+    return null;
   }
 
   render () {
@@ -13,11 +13,11 @@ class PageLayout extends Component {
 
     if(!isLayout) {
       return (
-        <iframe src="/page/" />
+        <iframe src="/page/" title="preview" />
       )
     }
 
-    return renderPage(xml)
+    return this.renderPage(xml)
   }
 }
 

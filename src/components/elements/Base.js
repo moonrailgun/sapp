@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Base extends Component {
+export default class Base extends React.Component {
   static tagName = '';
   static label = '';
 
@@ -25,7 +25,6 @@ export default class Base extends Component {
     switch (view) {
       case 'icon':
         return this.getIcon();
-        break;
       default:
         return null;
     }
