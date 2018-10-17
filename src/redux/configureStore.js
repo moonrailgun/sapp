@@ -1,6 +1,8 @@
-import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
+import reducers from './reducers'
+import sagas from './sagas'
 
 const logger = createLogger({
   level: 'info',
@@ -8,9 +10,9 @@ const logger = createLogger({
   collapsed: true,
   // stateTransformer: (state) => state.toJS(),
 })
-
+const sagaMiddleware = createSagaMiddleware();
 let middlewares = [
-  thunk,
+  sagaMiddleware,
 ];
 if(process.env !== 'production') {
   middlewares.push(logger);
@@ -18,8 +20,8 @@ if(process.env !== 'production') {
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
 function configureStore(initialState) {
-  const reducers = require('../reducers');
   const store = createStoreWithMiddleware(reducers, initialState);
+  sagaMiddleware.run(sagas)
 
   return store;
 }
