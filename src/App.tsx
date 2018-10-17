@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import logo from './logo.svg'
 import './App.css'
 
 import { Provider } from 'react-redux'
@@ -10,7 +9,7 @@ import Editor from './routes/Editor'
 import Page from './routes/Page'
 
 const store = configureStore();
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
