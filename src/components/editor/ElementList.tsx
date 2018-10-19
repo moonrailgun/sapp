@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import elements from '../elements'
 
-class ElementList extends Component {
+class ElementList extends React.Component {
   getList() {
     return elements.map(item => {
       let {

@@ -1,0 +1,1 @@
+declare const ActiveXObject: any;

@@ -1,7 +1,11 @@
-import React from 'react'
-import Base from './Base'
+import * as React from 'react'
+import Base, { Props as BaseProps } from './Base'
 
-export default class Text extends Base {
+export interface Props extends BaseProps {
+  text: string;
+}
+
+export default class Text extends Base<Props> {
   tagName = 'Text'
   label = '文本框'
 

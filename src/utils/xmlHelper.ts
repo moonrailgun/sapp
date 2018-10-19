@@ -1,4 +1,4 @@
-export function str2xml(str) {
+export function str2xml(str: string) {
   if(document.all){
     var xmlDom = new ActiveXObject("Microsoft.XMLDOM");
     xmlDom.loadXML(str);

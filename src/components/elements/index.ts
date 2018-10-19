@@ -1,6 +1,11 @@
 import Text from './Text'
 
-let elements = [
+interface ElementList {
+  label: string;
+  list: Array<any>;
+}
+
+let elements: Array<ElementList> = [
   {
     label: '元素',
     list: [

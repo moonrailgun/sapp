@@ -3,7 +3,7 @@ const initialState = immutable.fromJS({
   pages: [],
 });
 
-module.exports = function cache(state = initialState, action) {
+export default function index(state = initialState, action: any) {
   switch (action.type) {
     case 'LOAD_PAGE_SUCCESSED':
       return state.set('pages', action.payload);

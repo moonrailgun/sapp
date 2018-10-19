@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import PageLayout from '../components/editor/PageLayout'
 
-export default class extends Component {
+export default class extends React.Component {
   render() {
     return (
       <PageLayout />
