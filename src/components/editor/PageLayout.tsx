@@ -12,7 +12,12 @@ export default class PageLayout extends React.Component<Props> {
 
   renderPage(_xml:string) {
     // TODO
-    return null;
+    return (
+      <div className="preview" onDragOver={(e) => console.log(e)}>
+        {/* TODO: xml渲染 */}
+
+      </div>
+    );
   }
 
   render () {
@@ -21,9 +26,9 @@ export default class PageLayout extends React.Component<Props> {
       xml,
     } = this.props;
 
-    if(!isLayout) {
+    if(isLayout) {
       return (
-        <iframe src="/page/" title="preview" />
+        <iframe className="preview-iframe" src="/page/" title="preview" />
       )
     }
 

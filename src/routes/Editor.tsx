@@ -19,16 +19,18 @@ class Editor extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SplitPane split="vertical" minSize={240} defaultSize={240} maxSize={500}>
-          <SplitPane split="horizontal" minSize={100} defaultSize={400} maxSize={500}>
-            <OutlineView />
-            <ElementList />
+        <div className="sapp-editor-main">
+          <SplitPane split="vertical" minSize={240} defaultSize={240} maxSize={500}>
+            <SplitPane split="horizontal" minSize={100} defaultSize={400} maxSize={500}>
+              <OutlineView />
+              <ElementList />
+            </SplitPane>
+            <SplitPane split="vertical" primary="second" minSize={240} defaultSize={240} maxSize={500}>
+              <PageLayout isLayout={true} />
+              <ElementAttribute />
+            </SplitPane>
           </SplitPane>
-          <SplitPane split="vertical" primary="second" minSize={240} defaultSize={240} maxSize={500}>
-            <PageLayout isLayout={true} />
-            <ElementAttribute />
-          </SplitPane>
-        </SplitPane>
+        </div>
       </div>
     )
   }
