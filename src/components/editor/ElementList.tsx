@@ -1,5 +1,7 @@
 import * as React from 'react'
 import elements from '../elements'
+import List from "../List";
+import Cell from "../Cell";
 
 class ElementList extends React.Component {
   getList() {
@@ -9,9 +11,17 @@ class ElementList extends React.Component {
         list
       } = item
 
-      return list.map(Element => (
-        <Element key={'icon_'+label} view="sketch" />
-      ))
+      return (
+        <List key={'icon_'+label}>
+          {
+            list.map((Element, index) => (
+              <Cell key={'icon_'+label+'_'+index}>
+                  <Element view="sketch" />
+              </Cell>
+            ))
+          }
+        </List>
+      )
     })
   }
 

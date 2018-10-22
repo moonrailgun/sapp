@@ -32,24 +32,27 @@ export default class Base<P extends Props, S = {}> extends React.Component<P, S>
 
   getSketch(): JSX.Element {
     return (
-      <div>
-        <Tooltip title={this.getSummary()} placement="right">
-          <div>
-            {this.getIcon()}
-            {this.label}
-          </div>
-        </Tooltip>
-      </div>
+      <Tooltip title={this.getSummary()} placement="right">
+        <div className="sketch">
+          {this.getIcon()}
+          {this.label}
+        </div>
+      </Tooltip>
     )
   }
 
   render() {
     let { view } = this.props
+    let r = null;
     switch (view) {
       case 'sketch':
-        return this.getSketch();
-      default:
-        return null;
+        r = this.getSketch();break;
     }
+
+    return (
+      <div className="element">
+        {r}
+      </div>
+    )
   }
 }

@@ -18,7 +18,7 @@ class App extends React.Component {
         <Provider store={store}>
           <BrowserRouter>
             <Switch>
-              {/* <Redirect exact from='/' to='/editor'/> */}
+              <Redirect exact from='/' to='/editor'/>
               <Route path="/editor" component={Editor}></Route>
               <Route path="/page" component={Page}></Route>
             </Switch>
