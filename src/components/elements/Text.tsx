@@ -8,6 +8,7 @@ export interface Props extends BaseProps {
 export default class Text extends Base<Props> {
   tagName = 'Text'
   label = '文本框'
+  summary = '一个简单的富文本'
 
   getXML() {
     return `
@@ -26,12 +27,6 @@ export default class Text extends Base<Props> {
   getView() {
     return (
       <div>{this.props.text}</div>
-    )
-  }
-
-  getIcon() {
-    return (
-      <div>文本</div>
     )
   }
 }

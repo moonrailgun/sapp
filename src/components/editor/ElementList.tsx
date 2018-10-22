@@ -10,7 +10,7 @@ class ElementList extends React.Component {
       } = item
 
       return list.map(Element => (
-        <Element key={'icon_'+label} view="icon" />
+        <Element key={'icon_'+label} view="sketch" />
       ))
     })
   }
