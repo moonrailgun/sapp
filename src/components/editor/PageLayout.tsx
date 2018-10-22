@@ -11,6 +11,7 @@ export default class PageLayout extends React.Component<Props> {
   }
 
   renderPage(_xml:string) {
+    // TODO
     return null;
   }
 
