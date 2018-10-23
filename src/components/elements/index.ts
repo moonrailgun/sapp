@@ -15,3 +15,8 @@ let elements: Array<ElementList> = [
 ]
 
 export default elements
+
+// 注册元素列表
+export const registerMap = {
+  Text,
+}
