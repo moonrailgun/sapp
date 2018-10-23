@@ -1,14 +1,23 @@
 import * as React from 'react'
 import { stringToFunc } from "../../utils/iframeHelper";
+import { getPersistenceXML, xml2obj } from "../../utils/xmlHelper";
+import PreviewRender from "./PreviewRender";
 
 export interface Props {
-  isLayout?: boolean;
-  xml: string;
+  isIFrame?: boolean;
+}
+export interface State {
+  layout: object;
 }
 
-export default class PageLayout extends React.Component<Props> {
-  static defaultProps: Partial<Props> = {
-    xml: ''
+export default class PageLayout extends React.Component<Props, State> {
+  xml: string;
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      layout: {},
+    };
   }
 
   _handleDragOver(e: React.DragEvent<HTMLDivElement>) {
@@ -20,9 +29,16 @@ export default class PageLayout extends React.Component<Props> {
     const DraggedElementFunc = e.dataTransfer.getData('DraggedElementFunc');
     const DraggedElement = stringToFunc(DraggedElementFunc);
     console.log('drop element', DraggedElement)
+
+    // TODO
   }
 
-  renderPage(_xml:string) {
+  _handleIFrameLoaded(_e: React.SyntheticEvent<HTMLIFrameElement>) {
+    let iframe = (window as any).iframe;
+    iframe && iframe.transferXML && iframe.transferXML(this.xml)
+  }
+
+  renderPage(layout:object) {
     // TODO
     return (
       <div
@@ -31,23 +47,45 @@ export default class PageLayout extends React.Component<Props> {
         onDrop={(e) => this._handleDrop(e)}
       >
         {/* TODO: xml渲染 */}
-
+        <PreviewRender layout={layout} />
       </div>
     );
   }
 
+  componentDidMount() {
+    if(this.props.isIFrame) {
+      this.xml = getPersistenceXML();
+    }else {
+      // 创建全局方法用于接受数据
+      (window as any).transferXML = (xml: string) => {
+        console.log('接收到来自父级的xml数据:', xml);
+        xml2obj(xml).then((res) => {
+          this.setState({layout: res});
+        }).catch(e => {
+          console.error('编译失败:', e)
+        })
+      }
+    }
+  }
+
   render () {
     const {
-      isLayout,
-      xml,
+      isIFrame,
     } = this.props;
 
-    if(isLayout) {
+    if(isIFrame) {
       return (
-        <iframe className="preview-iframe" src="/page/" title="preview" />
+        <iframe
+          ref="iframe"
+          name="iframe"
+          className="preview-iframe"
+          src="/page/"
+          title="preview"
+          onLoad={(e) => this._handleIFrameLoaded(e)}
+        />
       )
     }
 
-    return this.renderPage(xml)
+    return this.renderPage(this.state.layout);
   }
 }

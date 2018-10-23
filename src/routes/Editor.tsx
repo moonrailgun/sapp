@@ -26,7 +26,7 @@ class Editor extends React.Component {
               <ElementList />
             </SplitPane>
             <SplitPane split="vertical" primary="second" minSize={240} defaultSize={240} maxSize={500}>
-              <PageLayout isLayout={true} />
+              <PageLayout isIFrame={true} />
               <ElementAttribute />
             </SplitPane>
           </SplitPane>

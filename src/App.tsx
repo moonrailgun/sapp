@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import './App.css'
 
 import { Provider } from 'react-redux'
 import configureStore from './redux/configureStore'
